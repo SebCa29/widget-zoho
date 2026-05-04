@@ -1,24 +1,16 @@
 document.getElementById("content").innerHTML = "JS chargé";
 
-ZOHO.embeddedApp.on("PageLoad", function(data) {
+ZOHO.embeddedApp.init().then(function() {
 
-    console.log("PageLoad data:", data);
+    ZOHO.CRM.UI.getCurrentRecord().then(function(data) {
 
-    let recordId = null;
+        console.log("Record data:", data);
 
-    if (data && data.EntityId && data.EntityId.length > 0)
-    {
-        recordId = data.EntityId[0];
-    }
+        let recordId = data.data[0].id;
 
-    if(recordId == null)
-    {
-        document.getElementById("content").innerHTML = "Erreur : ID introuvable";
-        return;
-    }
+        document.getElementById("content").innerHTML =
+            "ID trouvé : " + recordId;
 
-    document.getElementById("content").innerHTML = "ID trouvé : " + recordId;
+    });
 
 });
-
-ZOHO.embeddedApp.init();
