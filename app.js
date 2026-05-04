@@ -1,18 +1,15 @@
 document.getElementById("content").innerHTML = "JS chargé";
 
-if (typeof ZOHO === "undefined") {
-    document.getElementById("content").innerHTML = "ZOHO NON CHARGÉ";
-} else {
-    document.getElementById("content").innerHTML = "ZOHO OK";
+ZOHO.embeddedApp.init().then(function() {
 
-    ZOHO.embeddedApp.on("PageLoad", function(data) {
+    document.getElementById("content").innerHTML = "INIT OK";
+
+    // test simple API
+    ZOHO.CRM.CONFIG.getCurrentUser().then(function(user){
 
         document.getElementById("content").innerHTML =
-            "PageLoad reçu";
-
-        console.log("DATA :", data);
+            "Utilisateur : " + user.users[0].full_name;
 
     });
 
-    ZOHO.embeddedApp.init();
-}
+});
