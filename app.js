@@ -15,7 +15,7 @@ ZOHO.embeddedApp.on("PageLoad", function(data) {
 
     // 🔥 Récupération de la session CRM
     ZOHO.CRM.API.getRecord({
-        Entity: "Sessions",
+        Entity: "Prestations",
         RecordID: recordId
     }).then(function(res){
 
