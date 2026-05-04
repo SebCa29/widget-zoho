@@ -1,4 +1,4 @@
-document.getElementById("content").innerHTML = "Chargement JS OK";
+document.getElementById("content").innerHTML = "JS chargé";
 
 ZOHO.embeddedApp.on("PageLoad", function(data) {
 
@@ -9,6 +9,12 @@ ZOHO.embeddedApp.on("PageLoad", function(data) {
     if (data && data.EntityId && data.EntityId.length > 0)
     {
         recordId = data.EntityId[0];
+    }
+
+    if(recordId == null)
+    {
+        document.getElementById("content").innerHTML = "Erreur : ID introuvable";
+        return;
     }
 
     document.getElementById("content").innerHTML = "ID trouvé : " + recordId;
