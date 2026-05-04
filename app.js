@@ -1,16 +1,18 @@
 document.getElementById("content").innerHTML = "JS chargé";
 
-ZOHO.embeddedApp.init().then(function() {
+if (typeof ZOHO === "undefined") {
+    document.getElementById("content").innerHTML = "ZOHO NON CHARGÉ";
+} else {
+    document.getElementById("content").innerHTML = "ZOHO OK";
 
-    ZOHO.CRM.UI.getCurrentRecord().then(function(data) {
-
-        console.log("Record data:", data);
-
-        let recordId = data.data[0].id;
+    ZOHO.embeddedApp.on("PageLoad", function(data) {
 
         document.getElementById("content").innerHTML =
-            "ID trouvé : " + recordId;
+            "PageLoad reçu";
+
+        console.log("DATA :", data);
 
     });
 
-});
+    ZOHO.embeddedApp.init();
+}
