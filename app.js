@@ -21,7 +21,7 @@ ZOHO.embeddedApp.on("PageLoad", function(data) {
 
         let session = res.data[0];
 
-        let produit = session.Programe ? session.Product.name : "Non défini";
+        let produit = session.Programme ? session.Product.name : "Non défini";
         let date_debut = session.Date_de_d_but || "Non définie";
         let date_fin = session.Date_de_fin || "Non définie";
 
